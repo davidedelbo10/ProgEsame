@@ -46,7 +46,6 @@ function login(user, pass, reply) {
                     if (rowCount = 0) {
                         reply({ status: 'ko' });
                     }
-                    reply(Risposta);
                 }
             });
 
@@ -137,7 +136,6 @@ function TrovaPunteggio(user, reply) {
                     else {
                         reply({ status: 'ok', punteggio: punti });
                     }
-                    reply(Risposta);
                 }
             });
 
