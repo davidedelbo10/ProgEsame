@@ -40,8 +40,8 @@ function login(user, pass, reply) {
         else {
             console.log('Connected');
             var Risposta = [];
-            query = "SELECT IdU FROM Utenti WHERE Username=@user AND Password=@pass"; //CRIPTA LA PASSWORD
-            request = new Request(query, function (err, rowCount) {
+            var query = "SELECT IdU FROM Utenti WHERE Username=@user AND Password=@pass"; //CRIPTA LA PASSWORD
+            var request = new Request(query, function (err, rowCount) {
                 if (err) { console.log(err); }
                 else {
                     if (rowCount = 0) {
@@ -51,8 +51,8 @@ function login(user, pass, reply) {
                 }
             });
 
-            request.AddParameter('user', TYPES.VarChar, user);
-            request.AddParameter('pass', TYPES.VarChar, pass);//DA CRIPTARE
+            request.addParameter('user', TYPES.VarChar, user);
+            request.addParameter('pass', TYPES.VarChar, pass);//DA CRIPTARE
 
 
             request.on('row', function (columns) {
@@ -88,8 +88,8 @@ function signup(user, pass, reply) {
         else {
             console.log('Connected');
             var Risposta = [];
-            query = "INSERT INTO Utenti(Username, Password) VALUES (@user,@pass)"; //DA CRIPTARE
-            request = new Request(query, function (err, rowCount) {
+            var query = "INSERT INTO Utenti(Username, Password) VALUES (@user,@pass)"; //DA CRIPTARE
+            var request = new Request(query, function (err, rowCount) {
                 if (err) { console.log(err); }
                 else {
                     if (rowCount = 0) {
@@ -101,8 +101,8 @@ function signup(user, pass, reply) {
                     reply(Risposta);
                 }
             });
-            request.AddParameter('user', TYPES.VarChar, user);
-            request.AddParameter('pass', TYPES.VarChar, pass);//DA CRIPTARE
+            request.addParameter('user', TYPES.VarChar, user);
+            request.addParameter('pass', TYPES.VarChar, pass);//DA CRIPTARE
             connection.execSql(request);
         }
     });
@@ -132,8 +132,8 @@ function TrovaPunteggio(reply,user)
                 else {
                     console.log('Connected');
                     var Risposta = [];
-                    query = "SELECT Punteggio FROM Utenti WHERE Username=@user";
-                    request = new Request(query, function (err, rowCount) {
+                    var query = "SELECT Punteggio FROM Utenti WHERE Username=@user";
+                    var request = new Request(query, function (err, rowCount) {
                         if (err) { console.log(err); }
                         else {
                             if (rowCount = 0) {
@@ -146,7 +146,7 @@ function TrovaPunteggio(reply,user)
                         }
                     });
                     
-                    request.AddParameter('user', TYPES.VarChar, user);
+                    request.addParameter('user', TYPES.VarChar, user);
 
                     request.on('row', function (columns) {
                         columns.forEach(function (column) {
