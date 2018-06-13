@@ -112,7 +112,7 @@ server.route({
     method: 'GET',
     path: '/punteggio',
     handler: function (request, reply) {
-        TrovaPunteggio(request.payload.username, reply);
+        TrovaPunteggio(request.query.username, reply);
     }
 });
 
