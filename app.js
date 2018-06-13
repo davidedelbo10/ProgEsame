@@ -39,7 +39,7 @@ function login(user, pass, reply) {
         }
         else {
             console.log('Connected');
-            var Risposta = [];
+            var Risposta = null;
             var query = "SELECT IdU FROM Utenti WHERE Username=@user AND Password=@pass"; //CRIPTA LA PASSWORD
             var request = new Request(query, function (err, rowCount) {
                 if (err) { console.log(err); }
@@ -87,7 +87,7 @@ function signup(user, pass, reply) {
         }
         else {
             console.log('Connected');
-            var Risposta = [];
+            var Risposta = null;
             var query = "INSERT INTO Utenti(Username, Password) VALUES (@user,@pass)"; //DA CRIPTARE
             var request = new Request(query, function (err, rowCount) {
                 if (err) { console.log(err); }
@@ -131,7 +131,7 @@ function TrovaPunteggio(user,reply)
                 }
                 else {
                     console.log('Connected');
-                    var Risposta = [];
+                    var Risposta = null;
                     var query = "SELECT Punteggio FROM Utenti WHERE Username=@user";
                     var request = new Request(query, function (err, rowCount) {
                         if (err) { console.log(err); }
