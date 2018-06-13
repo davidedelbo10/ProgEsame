@@ -116,11 +116,11 @@ server.route({
     method: 'GET',
     path: '/punteggio',
     handler: function (request, reply) {
-        signup(request.payload.username, reply);
+        TrovaPunteggio(request.payload.username, reply);
     }
 });
 
-function TrovaPunteggio(reply,user)
+function TrovaPunteggio(user,reply)
 {
 
     var connection = new Connection(config);
