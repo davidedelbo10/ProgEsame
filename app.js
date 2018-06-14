@@ -150,6 +150,43 @@ function TrovaPunteggio(user, reply) {
         }
     });
 }
+//-----------------------------------------------------------------------------------
+server.route({
+    method: 'GET',
+    path: '/insertPunteggio',
+    handler: function (request, reply) {
+        AggiungiPunteggio(request.query.punti, request.query.username, reply);
+    }
+});
+
+function AggiungiPunteggio(user, punti, reply) {   
+    var connection = new Connection(config);
+
+    connection.on('connect', function (err) {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            console.log('Connected');
+            var query = "UPDATE Utenti SET Punteggio = @punti WHERE Username=@user";
+            var request = new Request(query, function (err, rowCount) {
+                if (err) { console.log(err); }
+                else {
+                    if (rowCount = 0) {
+                        reply({ status: 'ko'});
+                    }
+                    else {
+                        reply({ status: 'ok'});
+                    }
+                }
+            });
+
+            request.addParameter('punti', TYPES.int, punti); //CONTROLLA
+            request.addParameter('user', TYPES.VarChar, user);
+            connection.execSql(request);
+        }
+    });
+}
 
 server.start(function () {
     console.log('Hapi is listening');
