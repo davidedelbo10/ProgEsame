@@ -155,7 +155,7 @@ server.route({
     method: 'POST',
     path: '/insertPunteggio',
     handler: function (request, reply) {
-        AggiungiPunteggio(request.payload.punti, request.payload.username, reply);
+        AggiungiPunteggio(request.payload.username, request.payload.punti, reply);
     }
 });
 
