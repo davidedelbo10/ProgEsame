@@ -152,10 +152,10 @@ function TrovaPunteggio(user, reply) {
 }
 //-----------------------------------------------------------------------------------
 server.route({
-    method: 'GET',
+    method: 'POST',
     path: '/insertPunteggio',
     handler: function (request, reply) {
-        AggiungiPunteggio(request.query.punti, request.query.username, reply);
+        AggiungiPunteggio(request.payload.punti, request.payload.username, reply);
     }
 });
 
@@ -181,7 +181,7 @@ function AggiungiPunteggio(user, punti, reply) {
                 }
             });
 
-            request.addParameter('punti', TYPES.int, punti); //CONTROLLA
+            request.addParameter('punti', TYPES.Int, punti); //CONTROLLA
             request.addParameter('user', TYPES.VarChar, user);
             connection.execSql(request);
         }
